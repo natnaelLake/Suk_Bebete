@@ -37,10 +37,9 @@ for(let i = 0;i<productImage.length;i++){
 
 export const getProductController = async (req, res) => {
   try {
-      const newUser = await Products.getUser();
-    ;
-    console.log("welcome to get", newUser);
-    res.json(newUser);
+      const newProduct = await Products.getProduct();
+    console.log("welcome to get", newProduct);
+    res.json(newProduct);
   } catch (error) {
     console.log(error);
     res.json(error);
