@@ -10,17 +10,12 @@ const userDB = new mongoose.Schema(
       type: String,
       required: true,
     },
-    amount: {
-      type: Number,
-      required: true,
-    },
     address: {
       type: String,
       required: true,
     },
     email: {
       type: String,
-      required: false,
     },
   },
   { timestamps: true }

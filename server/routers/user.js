@@ -1,9 +1,20 @@
-import express  from 'express'
-const routePage = express.Router()
+import express from "express";
+import { createUserValidator } from "../validators/user-validator.js";
+import parseValidations from "../validators/errors.parser.js";
 
-import { createUserController, getUserController } from "../controllers/user.js";
+const routePage = express.Router();
 
-routePage.post('/createUser',createUserController)
-routePage.get('/getUser',getUserController)
+import {
+  createUserController,
+  getUserController,
+} from "../controllers/user.js";
 
-export default routePage
+routePage.post(
+  "/createUser",
+  createUserValidator(),
+  parseValidations,
+  createUserController
+);
+routePage.get("/getUser", getUserController);
+
+export default routePage;

@@ -9,7 +9,8 @@ const adminDB = new mongoose.Schema({
     password:{
         type:String,
         required:[true]
-    }
-})
+    },
+    token:String,
+},{timestamps:true})
 
 export default adminDB

@@ -1,5 +1,6 @@
 export const modelNames = {
     users:'Users',
     products:'Products',
-    admin:'Admin'
+    admin:'Admin',
+    orders:'Order'
 }

@@ -1,11 +1,10 @@
 import { modelNames } from "../../utils/constants.js";
 
 export async function createUser(userInfo) {
-  const { phone, amount, address, name, email } = userInfo;
+  const { phone, address, name, email } = userInfo;
 
   const createdUser = this.model(modelNames.users).create({
     phone,
-    amount,
     address,
     name,
     email,

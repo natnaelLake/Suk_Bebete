@@ -1,35 +1,31 @@
-// // require.config("dotenv");
-// import passport from "passport";
-// // import Admin from "../../models/users/Admin.js"
-// import Admin from "../../models/users/Admin/index.js";
-// import JwtStrategy  from "passport-jwt";
-// import { ExtractJwt } from "passport-jwt";
-// const opts = {
-//   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-//   secretOrKey: 'process.env.JWT_SECRET_KEY',
-// };
+import {Strategy as JwtStrategy} from 'passport-jwt'
+import { ExtractJwt } from 'passport-jwt'
+import Admin from '../../models/users/Admin/index.js';
+import dotenv from 'dotenv'
+import { authenticateAdmin } from '../../models/users/Admin/methods.js';
+dotenv.config();
+const secret = process.env.JWT_SECRET_KEY
+const opts = {
+    jwtFromRequest :ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey:secret
+}
 
-// const passportConnection = passport.use(
-//   new JwtStrategy(opts, async (payload, done) => {
-//     const user = await Admin.findOne({ _id: payload._id });
-//     try {
-//       const user = await Admin.findOne({ _id: payload._id });
+const strategy = new JwtStrategy(opts,(payload,done)=>{
+    console.log('payload',payload);
+    Admin.findOne({_id:payload.sub}).then((err,user)=>{
+        if (err) {
+            return done(err, false);
+        }
+        if (user) {
+            const token = authenticateAdmin(user._id);
+            return done(null, user,token);
+        } else {
+            console.log(user)
+            return done(null, false);
+        }
+    })
+})
 
-//       if (!user) {
-//         const NotFound = new APIError(
-//           "User not found",
-//           httpStatus.NOT_FOUND,
-//           true
-//         );
 
-//         return done(NotFound, false);
-//       }
 
-//       return done(false, user);
-//     } catch (error) {
-//       return done(error, null);
-//     }
-//   })
-// );
-
-// export default passportConnection;
+export default strategy;

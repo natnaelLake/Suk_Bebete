@@ -1,16 +1,24 @@
 import { modelNames } from "../../../utils/constants.js";
+import Admin from "./index.js";
+import { authenticateAdmin } from "./methods.js";
 
 export async function createAdmin(userInfo) {
-  const { email,password } = userInfo;
-
-  const createdAdmin = this.model(modelNames.admin).create({
+  const { email, password } = userInfo;
+  const createdAdmin = new Admin({
     email,
-    password
+    password,
   });
-  return createdAdmin
+  const token = authenticateAdmin(createdAdmin._id);
+  createdAdmin.token = token;
+  createdAdmin.save();
+
+  console.log(createdAdmin, token);
+  return createdAdmin;
 }
 
-export async function getAdmin() {
-  const regesteredAdmin = this.model(modelNames.admin).find().sort({updatedAt:-1})
-  return regesteredAdmin
+export async function getAdmin(adminInfo) {
+  const { email, password } = adminInfo;
+  const regesteredAdmin = this.model(modelNames.admin)
+    .find()
+  return regesteredAdmin;
 }

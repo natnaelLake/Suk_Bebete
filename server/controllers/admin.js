@@ -1,32 +1,26 @@
 import Admin from "../models/users/Admin/index.js";
-// import Users from "../models/users/index.js";
-// import Admin from "../models/users/Admin/index.js";
 
-
-export const createAdminController = async (req, res) => {
-  const {email,password } = req.body;
+export const createAdminController = async (req, res,next) => {
+  const { email, password } = req.body;
   try {
-      const adminInfo = {
-        email,
-        password
-      };
-      const newAdmin = await Admin.createAdmin(adminInfo);
-    console.log("welcome to post", newAdmin);
+    const adminInfo = {
+      email,
+      password,
+    };
+    const newAdmin = await Admin.createAdmin(adminInfo);
     res.json(newAdmin);
   } catch (error) {
-    console.log(error);
-    res.json(error);
+    next(error)
   }
 };
 
-export const getAdminController = async (req, res) => {
+export const getAdminController = async (req, res,next) => {
+  const { email, password } = req.body;
   try {
-      const admins = await Admin.getAdmin();
-    ;
-    console.log("welcome to get", admins);
+    const adminInfo = {email,password}
+    const admins = await Admin.getAdmin(adminInfo);
     res.json(admins);
   } catch (error) {
-    console.log(error);
-    res.json(error);
+    next(error)
   }
 };
