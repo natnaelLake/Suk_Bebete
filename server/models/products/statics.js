@@ -18,3 +18,24 @@ export async function getProduct() {
     .sort({ updatedAt: -1 });
   return regesteredProducts;
 }
+
+export async function searchProduct(searchProduct) {
+  const searchedProduct = this.model(modelNames.products).aggregate([
+    { $match: { productName: searchProduct } },
+    {
+      $project: {
+        _id: 0,
+        createdAt: 0,
+        updatedAt: 0,
+        __v: 0,
+      },
+    },
+  ]);
+  return searchedProduct;
+}
+export async function sortByCostProduct() {
+  const sortedProduct = this.model(modelNames.products).aggregate([
+    { $sort: { productCost: 1 } },
+  ]);
+  return sortedProduct
+}

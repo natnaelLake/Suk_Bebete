@@ -19,18 +19,48 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
     "redux-saga": "^1.2.3",
-    "styled-components": "^6.0.4"
+    "styled-components": "^6.0.4",
+    "styled-system": "^5.1.5",
+    "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "@types/styled-system": "^5.1.16",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
     "@vitejs/plugin-react": "^4.0.1",
     "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
+    "fs": "^0.0.1-security",
+    "husky": "^8.0.3",
+    "inquirer": "7.3.3",
+    "inquirer-directory": "2.2.0",
+    "lint-staged": "^13.2.0",
+    "node-plop": "^0.31.0",
+    "path": "^0.12.7",
+    "plop": "2.7.4",
+    "prettier": "^2.8.7",
+    "shelljs": "^0.8.5",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "yarn run eslint --fix"
+    ],
+    "*.{md,json}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run checkTs && lint-staged"
+    }
   }
 }

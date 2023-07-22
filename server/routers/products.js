@@ -2,6 +2,8 @@ import express from "express";
 import {
   createProductController,
   getProductController,
+  searchController,
+  sortByCostController,
 } from "../controllers/product.js";
 import fileUploader from "../config/fileuploader.js";
 import { createProductValidator } from "../validators/product.validator.js";
@@ -16,5 +18,7 @@ router.post(
   createProductController
 );
 router.get("/getProduct", getProductController);
+router.get('/searchProduct',searchController);
+router.get('/sortByCost',sortByCostController);
 
 export default router;

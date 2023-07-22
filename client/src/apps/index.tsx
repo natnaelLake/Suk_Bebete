@@ -1,9 +1,7 @@
-const App = ()=>{
-    return (
-        <>
-            Welcome to TypeScripts and Vite Programming.
-        </>
-    )
-}
+import { Buttons } from './Button';
+
+const App = () => {
+  return <><Buttons /></>;
+};
 
 export default App;
