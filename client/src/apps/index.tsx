@@ -1,7 +1,12 @@
-import { Buttons } from './Button';
+// import { Buttons } from "./Button";
+import { Cards } from "./Cards";
 
 const App = () => {
-  return <><Buttons /></>;
+  return (
+    <>
+      <Cards />
+    </>
+  );
 };
 
 export default App;
