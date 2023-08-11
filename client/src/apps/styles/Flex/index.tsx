@@ -1,7 +1,16 @@
-import React from 'react'
+import { ReactType } from "../Grid/type";
+import { styled } from "styled-components";
 
-export const index = () => {
+export const Flex = ({ children }: ReactType) => {
   return (
-    <div>index</div>
-  )
-}
+    <>
+      <StyledFlex>{children}</StyledFlex>
+    </>
+  );
+};
+
+const StyledFlex = styled("div")`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
