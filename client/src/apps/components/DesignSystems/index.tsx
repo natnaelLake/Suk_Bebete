@@ -1,3 +1,4 @@
+import { BadgeTemplate } from "./Badge";
 import { FlexTemplate } from "./Flex";
 import { GridTemplate } from "./Grid";
 import { InputTemplate } from "./Input";
@@ -11,6 +12,8 @@ export const DesignSystem = () => {
       <FlexTemplate />
       <h1>Input Template</h1>
       <InputTemplate />
+      <h1>Badge Template</h1>
+      <BadgeTemplate />
     </>
   );
 };
