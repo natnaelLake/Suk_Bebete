@@ -12,5 +12,5 @@ export const Flex = ({ children }: ReactType) => {
 const StyledFlex = styled("div")`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
 `;
