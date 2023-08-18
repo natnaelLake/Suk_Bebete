@@ -30,10 +30,11 @@ const StyledInput = styled("input")`
   box-sizing: border-box;
   border-radius: 5px;
   padding: 1rem 2.2rem 1rem 1rem;
-
-  outline: none;
-  color: ${theme.colors.black[9]};
+  border: 1px solid #9bdc28;
   &:focus {
-    border: 1px solid ${theme.colors.border.focus};
+    outline: none;
+    box-shadow: 0 0 4px #9bdc28;
+    caret-color: #e2567d;
   }
+  color: ${theme.colors.black[9]};
 `;
